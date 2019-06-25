@@ -1,5 +1,5 @@
 import { addError,removeError } from './error';
-import {SET, SET_CURRENT_USER} from '../actionTypes';
+import { SET_CURRENT_USER} from '../actionTypes';
 import api from '../../services/api';
 
 export const setCurrentUser=user=>({
@@ -16,7 +16,7 @@ export const logout=()=>{
         localStorage.clear();
         api.setToken(null);
         dispatch(setCurrentUser({}));
-        dispatch(removeError);
+        dispatch(removeError());
     }
 }
 
@@ -29,8 +29,8 @@ export const authUser=(path,data)=>{
             dispatch(setCurrentUser(user));
             dispatch(removeError());
         }catch(err){
-            const {err} = err.response.data;
-            dispatch(addError(error));
+            const {error} = err.response.data;
+            dispatch(addError(error.message));
         }
     }
 }
