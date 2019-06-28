@@ -8,7 +8,8 @@ mongoose.connect(process.env.DATABASE);
 const db = require('./models');
 
 const users = [
-  { username: 'username', password: 'password' }
+  { username: 'username', password: 'password' },
+  { username: 'efe', password: '1234' },
 ];
 
 const polls = [

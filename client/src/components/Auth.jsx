@@ -27,20 +27,21 @@ class Auth extends Component{
     }
 
     render(){
-        const {username, password}=this.state; //destructuring usernameprovides use of username without 
+        const {username, password}=this.state; //destructuring username provides use of username without 
         //this.state.username
         return (
         <div>
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor="username">username</label>
-                <input type="text" value={username} name="username" autoComplete="off"
+            <form className="form" onSubmit={this.handleSubmit}>
+                <label className="form-label" htmlFor="username">username</label>
+                <input className="form-input" type="text" value={username} name="username" autoComplete="off"
                 onChange={this.handleChange} />
 
-                <label htmlFor="password">password></label>
-                <input type="password" value={password} name="password" autoComplete="off"
+                <label className="form-label" htmlFor="password">password</label>
+                <input className="form-input" type="password" value={password} name="password" autoComplete="off"
                 onChange={this.handleChange} />
 
-                <button type="submit">Submit</button>
+                <div className="button_center">
+                <button className="button" type="submit">Submit</button></div>
             </form>
         </div>
         );

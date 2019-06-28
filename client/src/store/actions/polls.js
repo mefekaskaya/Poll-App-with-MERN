@@ -75,5 +75,5 @@ export const vote = (path,data) => {
             const error = err.response.data;
             dispatch(addError(error.message));
         }
-    }
-}
+    };
+};

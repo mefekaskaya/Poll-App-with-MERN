@@ -8,7 +8,7 @@ const handle=require('./handlers');
 const routes=require('./routes');
 
 const app=express();
-const port=process.env.PORT || 4000;
+const port=process.env.PORT;
 
 app.use(cors()); 
 app.use(bodyParser.json());
