@@ -1,12 +1,29 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {withRouter} from 'react-router-dom';
-import ErrorMessage from '../components/ErrorMessage';
-import Poll from '../components/Poll';
-import CreatePoll from '../components/CreatePoll';
-import Polls from '../components/Polls';
+import decode from 'jwt-decode';
+import { Provider } from 'react-redux';
+import { store } from '../store';
+import { setToken, setCurrentUser, addError } from '../store/actions';
 import Auth from '../components/Auth';
+import Poll from '../components/Poll';
+import Polls from '../components/Polls';
+import ErrorMessage from '../components/ErrorMessage';
+import CreatePoll from '../components/CreatePoll';
 
-const TestPage = props => (<div>
+if(localStorage.jwtToken){
+    setToken(localStorage.jwtToken);
+    try{
+        store.dispatch(setCurrentUser(decode(localStorage.jwtToken)));
+    }
+    catch(err){
+        store.dispatch(setCurrentUser({}));
+        store.dispatch(addError(err));
+    }
+}
+
+const TestPage = props => (
+<Provider store={store}>
+    <Fragment>
         <h1>UI Test Page</h1>
         
         <h2>Testing Error Component</h2>
@@ -28,6 +45,8 @@ const TestPage = props => (<div>
         <h2>Testing Poll Component</h2>
         <Poll />
         <hr />
-    </div>);
+    </Fragment>
+</Provider>
+);
 
 export default withRouter(TestPage);

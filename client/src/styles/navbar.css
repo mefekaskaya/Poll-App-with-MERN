@@ -23,6 +23,7 @@
     color:white;
     text-decoration:none;
     cursor:pointer;
+    margin: 5px;
 }
 
 .navbar-user{
@@ -30,3 +31,4 @@
     text-align:right;
     color:var(--light);
 }
+

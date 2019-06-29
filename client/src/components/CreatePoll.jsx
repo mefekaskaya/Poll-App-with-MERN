@@ -37,20 +37,23 @@ class CreatePoll extends Component{
 
     render(){
 
-        const options = this.state.options.map((option, i) => <Fragment  key={i}>
-            <label className="form--label">option</label>
-            <input className="form-input" type="text" value={option} onChange={e => this.handleAnswer(e,i)} />
-        </Fragment>)
+        const options = this.state.options.map((option, i) => (<Fragment>
+            <label className="form-label">option</label>
+            <input className="form-input" type="text" value={option} key={i} onChange={e => this.handleAnswer(e,i)} />
+        </Fragment>));
 
-        return <form className="form" onSubmit={this.handleSubmit}>
+        return (<form className="form" onSubmit={this.handleSubmit}>
             <label className="form-label" htmlFor="question">Question</label>
             <input className="form-input" type="text" name="question" value={this.state.question} onChange={this.handleChange} />
-            {options}
+            <div className="container">
+                {options}
+            </div>
             <div className="button_center">
                 <button className="button" type="button" onClick={this.addAnswer}>Add Options</button>
                 <button className="button" type="submit">Submit</button>
             </div>
         </form>
+        );
     }
 }
 export default connect(()=>({}),{createPoll})(CreatePoll);

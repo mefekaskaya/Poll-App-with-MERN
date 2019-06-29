@@ -20,7 +20,7 @@ export const getPolls = () => {
             dispatch(removeError());
         }catch(err){
             const error = err.response.data;
-            dispatch(addError(error.message));
+            dispatch(addError(error));
         }
     };
 };
@@ -34,7 +34,7 @@ export const getUserPolls = () => {
             dispatch(removeError());
         }catch(err){
             const error = err.response.data;
-            dispatch(addError(error.message));
+            dispatch(addError(error));
         }
     };
 };
@@ -47,7 +47,7 @@ export const createPoll = data => {
             dispatch(removeError());
         }catch(err){
             const error = err.response.data;
-            dispatch(addError(error.message));
+            dispatch(addError(error));
         }
     };
 };
@@ -60,7 +60,7 @@ export const getCurrentPoll = path => {
             dispatch(removeError());
         }catch(err){
             const error = err.response.data;
-            dispatch(addError(error.message));
+            dispatch(addError(error));
         }
     };
 };
@@ -70,10 +70,9 @@ export const vote = (path,data) => {
         try{
             const poll = await api.call('post',`polls/${path}`,data);
             dispatch(setCurrentPoll(poll));
-            dispatch(removeError());
         }catch(err){
-            const error = err.response.data;
-            dispatch(addError(error.message));
+            const {error} = err.response.data;
+            dispatch(addError(error));
         }
     };
 };

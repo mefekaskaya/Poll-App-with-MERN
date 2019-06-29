@@ -25,11 +25,11 @@ const Poll = ({poll,vote}) => {
         ]
     };
 
-    return <div>
+    return (<div>
         <h3 className="poll-title">{poll.question}</h3>
         <div className="button_center">{answers}</div>
         {poll.options && <Pie data={data} />}
-    </div>;
+    </div>);
 };
 
 export default connect(store=>({

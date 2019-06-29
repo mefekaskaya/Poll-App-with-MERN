@@ -2,14 +2,14 @@ import { addError,removeError } from './error';
 import { SET_CURRENT_USER} from '../actionTypes';
 import api from '../../services/api';
 
-export const setCurrentUser=user=>({
+export const setCurrentUser = user => ({
     type:SET_CURRENT_USER,
     user
 });
 
-export const setToken=token=>{
+export const setToken = token => {
     api.setToken(token);
-}
+};
 
 export const logout=()=>{
     return dispatch=>{
@@ -17,10 +17,10 @@ export const logout=()=>{
         api.setToken(null);
         dispatch(setCurrentUser({}));
         dispatch(removeError());
-    }
-}
+    };
+};
 
-export const authUser=(path,data)=>{
+export const authUser = (path,data) => {
     return async dispatch => {
         try{
             const {token,...user}=await api.call('post',`auth/${path}`,data);
@@ -29,8 +29,8 @@ export const authUser=(path,data)=>{
             dispatch(setCurrentUser(user));
             dispatch(removeError());
         }catch(err){
-            const {error} = err.response.data;
+            const {error} = err.response.data.error;
             dispatch(addError(error.message));
         }
-    }
-}
+    };
+};

@@ -2,7 +2,6 @@ import React,{ Fragment } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import decode from 'jwt-decode';
-
 import { store } from '../store';
 import { setToken, setCurrentUser, addError } from '../store/actions';
 import Navbar from './NavBar';
@@ -23,8 +22,8 @@ const App=()=>(
 <Provider store={store}>
     <Router>
         <Fragment>
-        <Navbar />
-        <RouteViews />
+            <Navbar />
+            <RouteViews />
         </Fragment>
     </Router>        
 </Provider>);

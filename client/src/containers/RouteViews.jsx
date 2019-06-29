@@ -8,7 +8,7 @@ import PollPage from '../pages/PollPage';
 import CreatePollPage from '../pages/CreatePollPage';
 import TestPage from '../pages/TestPage';
 
-const RouteViews = ({auth, getCurrentPoll}) => (<main>
+const RouteViews = ({getCurrentPoll, auth }) => (<main className="container">
     <Switch>
         <Route exact path="/" render={props => <HomePage {...props} />} />
         <Route exact path="/login" render={()=>(<AuthPage authType="login" isAuthenticated={auth.isAuthenticated} />)} />

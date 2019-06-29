@@ -13,7 +13,7 @@ const AuthPage = ({authType, isAuthenticated}) => {
             <ErrorMessage />
             <Auth authType={authType} />
         </div>
-    )
-}
+    );
+};
 
 export default AuthPage;

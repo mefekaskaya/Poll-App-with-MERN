@@ -9,7 +9,8 @@ const userSchema=new mongoose.Schema({
     },
     password:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     created:{
         type:Date,
@@ -33,11 +34,11 @@ userSchema.pre('save',async function(next){
     }catch(err){
         return next(err);
     }
-})
+});
 
 userSchema.methods.comparePassword=async function(attempt,next){
     try{
-        return await bcrypt.compare(attenpt,this.password);
+        return await bcrypt.compare(attempt,this.password);
     }catch(err){
         next(err);
     }

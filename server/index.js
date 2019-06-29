@@ -3,7 +3,6 @@ const express=require('express');
 const cors=require('cors');
 const bodyParser=require('body-parser');
 
-const db=require('./models');
 const handle=require('./handlers');
 const routes=require('./routes');
 
@@ -12,11 +11,16 @@ const port=process.env.PORT;
 
 app.use(cors()); 
 app.use(bodyParser.json());
-
-app.get('/',(req,res)=>res.json({hello:'world'}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/auth',routes.auth);
 app.use('/api/polls',routes.poll);
+
+app.use((req, res, next) => {
+    let err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+  });
 
 app.use(handle.notFound);
 app.use(handle.errors);

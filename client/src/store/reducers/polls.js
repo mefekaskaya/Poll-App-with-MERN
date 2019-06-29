@@ -7,7 +7,7 @@ export const polls = ( state = [], action ) => {
         default:
             return state;
     }
-}
+};
 
 export const currentPoll = (state={},action) => {
     switch (action.type){
@@ -16,4 +16,4 @@ export const currentPoll = (state={},action) => {
         default:
             return state;
     }
-}
+};
